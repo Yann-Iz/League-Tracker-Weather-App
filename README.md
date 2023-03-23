@@ -49,20 +49,22 @@ Pour installer et exécuter l'application, suivez les étapes ci-dessous :
 ## Utilisation 
 
 1. Ouvrez l'application sur votre appareil.
-2. Inscrivez-vous et connectez vous grâce à la page de Login gérée via Firebase
+2. Inscrivez-vous et connectez vous grâce à la page de Login gérée via Firebase.
 3. Accédez à l'onglet "Home" pour consulter les statistiques de votre profil.
 4. Accédez à l'onglet "Rotation" pour consulter la rotation de champion de la semaine.
 
 (La version du logiciel affichant la météo se trouve dans la branche **weather**)
 
+⚠️ Les clés d'API fournies dans le code sont expirées et servent uniquement d'exemple. Veillez à bien les remplacer par vos propres clés d'API. ⚠️
+
 ## Technologies utilisées
 
-- React Native : Framework pour le développement d'applications mobiles multiplateformes
-- Expo : Plateforme et outils pour faciliter le développement avec React Native
-- Axios : Bibliothèque pour les requêtes HTTP
-- React Navigation : Navigation entre les différents écrans de l'application
-- API Riot Games : Fournit les informations sur les joueurs et les statistiques de League of Legends
-- API OpenWeatherMap : Fournit les informations météorologiques
+- React Native : Framework pour le développement d'applications mobiles multiplateformes.
+- Expo : Plateforme et outils pour faciliter le développement avec React Native.
+- Axios : Bibliothèque pour les requêtes HTTP.
+- React Navigation : Navigation entre les différents écrans de l'application.
+- API Riot Games : Fournit les informations sur les joueurs et les statistiques de League of Legends.
+- API OpenWeatherMap : Fournit les informations météorologiques.
 
 ## Contribution
 
