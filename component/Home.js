@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   StyleSheet,
@@ -8,34 +8,13 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import * as Location from "expo-location";
 
-const apiKey = "RGAPI-52d04f84-d2dd-448b-81d7-b6b53c6d3500";
-const weatherApiKey = "096e848e1507e1e7e5c91003289f6c7b";
+const apiKey = "RGAPI-2dba51a0-126a-49bb-b50a-7b9bd16ac30a";
 
 export default function Home() {
   const [summonerName, setSummonerName] = useState("");
   const [summonerData, setSummonerData] = useState(null);
   const [summonerLeagueData, setSummonerLeagueData] = useState(null);
-  const [weatherData, setWeatherData] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        console.error("La permission de localisation est requise");
-        return;
-      }
-
-      const location = await Location.getCurrentPositionAsync({});
-      const { latitude, longitude } = location.coords;
-
-      const weatherResponse = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&lang=fr`
-      );
-      setWeatherData(weatherResponse.data);
-    })();
-  }, []);
 
   const handleSearch = async () => {
     try {
@@ -60,46 +39,39 @@ export default function Home() {
         }
       );
       console.log(summonerEntriesResponse);
-      setSummonerLeagueData(summonerEntriesResponse.data);
+      setSummonerLeagueData(
+        summonerEntriesResponse.data
+        //  { queueType: summonerEntries.queueType,
+        //   tier: summonerEntries.tier,
+        //   rank: summonerEntries.rank,
+        //   leaguePoints: summonerEntries.leaguePoints,
+        //   wins: summonerEntries.wins,
+        //   losses: summonerEntries.losses, }
+      );
     } catch (error) {
       console.error(error);
     }
   };
 
+  console.log(summonerData, summonerLeagueData);
+
   return (
     <View style={styles.container}>
-      {weatherData && (
-        <View style={styles.weatherContainer}>
-          <Text style={styles.weatherText}>
-          <Text style={styles.weatherText}>
-            {weatherData.name}, {weatherData.sys.country}
-          </Text>
-          </Text>
-          <Text>
-          ({weatherData.weather[0].description})
-          </Text>
-          
-          <Text style={styles.weatherText}>
-            {Math.round(weatherData.main.temp - 273.15)}°C
-          </Text>
-        </View>
-      )}
+      <Image source={require("../assets/lol.png")} style={styles.image} />
       <Text style={styles.text}>Rechercher Un Invocateur :</Text>
       <View style={styles.inputContainer}>
-      
         <TextInput
           style={styles.input}
           placeholder="Nom d'invocateur"
           onChangeText={setSummonerName}
         />
-        
         <TouchableOpacity style={styles.button} onPress={handleSearch}>
           <Text style={styles.buttonText}>Rechercher</Text>
         </TouchableOpacity>
       </View>
       {summonerData && (
         <>
-                    <View style={styles.summonerDataContainer}>
+          <View style={styles.summonerDataContainer}>
             <Image
               source={{ uri: summonerData.profileIconUrl }}
               style={styles.profileIcon}
@@ -217,6 +189,7 @@ const styles = StyleSheet.create({
   },
   summonerDataHeader: {
     backgroundColor: "grey",
+    borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 15,
@@ -253,19 +226,4 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: 30,
   },
-  weatherContainer: {
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 50,
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  weatherText: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
 });
-
-

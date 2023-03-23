@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 
-const apiKey = "RGAPI-52d04f84-d2dd-448b-81d7-b6b53c6d3500";
+const apiKey = "RGAPI-2dba51a0-126a-49bb-b50a-7b9bd16ac30a";
 
 export default function Rotation() {
   const [champions, setChampions] = useState([]);
