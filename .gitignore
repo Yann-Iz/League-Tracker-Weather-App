@@ -1,5 +1,6 @@
 ### Firebase ###
 .idea
+.firebase
 **/node_modules/*
 **/.firebaserc
 
